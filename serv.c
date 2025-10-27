@@ -76,10 +76,37 @@ int main(int argc, char const* argv[])
 								val = list_remove_at_index(mylist,idx);
 								sprintf(sbuf,"%s%d", ACK, val);
 						}
-						else if(strcmp(token,"print") == 0){
-							  sprintf(sbuf,"%s", listToString(mylist));
-						}
-						// ADD THE OTHER OPERATIONS
+					else if(strcmp(token,"print") == 0){
+						  sprintf(sbuf,"%s", listToString(mylist));
+					}
+					else if(strcmp(token,"add_back") == 0){
+						  token = strtok(NULL, " ");
+							val = atoi(token);
+							list_add_to_back(mylist, val);
+							sprintf(sbuf,"%s%d", ACK, val);
+					}
+					else if(strcmp(token,"add_position") == 0){
+						  token = strtok(NULL, " ");
+							idx = atoi(token);
+							token = strtok(NULL, " ");
+							val = atoi(token);
+							list_add_at_index(mylist, idx, val);
+							sprintf(sbuf,"%s%d", ACK, val);
+					}
+					else if(strcmp(token,"remove_back") == 0){
+							val = list_remove_from_back(mylist);
+							sprintf(sbuf,"%s%d", ACK, val);
+					}
+					else if(strcmp(token,"remove_front") == 0){
+							val = list_remove_from_front(mylist);
+							sprintf(sbuf,"%s%d", ACK, val);
+					}
+					else if(strcmp(token,"get") == 0){
+						  token = strtok(NULL, " ");
+							idx = atoi(token);
+							val = list_get_elem_at(mylist, idx);
+							sprintf(sbuf,"Value at index %d = %d", idx, val);
+					}
 
 
                 // send's messages to client socket 
